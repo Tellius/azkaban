@@ -21,7 +21,7 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.utils.Pair;
 
@@ -33,7 +33,7 @@ import azkaban.utils.Pair;
  * <pre>
  */
 public abstract class CandidateComparator<T> implements Comparator<T> {
-  protected static Logger logger = Logger.getLogger(CandidateComparator.class);
+  protected static Logger logger = LogManager.getLogger(CandidateComparator.class);
 
   // internal repository of the registered comparators .
   private Map<String,FactorComparator<T>> factorComparatorList =

@@ -20,7 +20,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.project.DirectoryFlowLoader;
 import azkaban.server.AzkabanServer;
@@ -43,9 +43,12 @@ public class JavaProcessJob extends ProcessJob {
 
   public static String JAVA_COMMAND = "java";
 
-  public JavaProcessJob(String jobid, Props sysProps, Props jobProps,
-      Logger logger) {
+  public JavaProcessJob(String jobid, Props sysProps, Props jobProps, Logger logger) {
     super(jobid, sysProps, jobProps, logger);
+  }
+
+  public JavaProcessJob(String jobid, Props sysProps, Props jobProps, org.apache.logging.log4j.core.Logger logger) {
+    super(jobid, sysProps, jobProps, (Logger)logger);
   }
 
   @Override

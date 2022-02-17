@@ -38,7 +38,7 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 /** class handles the communication between the application and
  *  a Restful API based web server.
@@ -49,7 +49,7 @@ import org.apache.log4j.Logger;
  *        of returning object (Dictionary, xmlDoc , text etc.)
  * */
 public abstract class RestfulApiClient<T> {
-  protected static Logger logger = Logger.getLogger(RestfulApiClient.class);
+  protected static Logger logger = LogManager.getLogger(RestfulApiClient.class);
 
   /** Method to transform the response returned by the httpClient into the
    *  type specified.

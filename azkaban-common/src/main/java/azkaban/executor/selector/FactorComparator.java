@@ -17,13 +17,13 @@
 package azkaban.executor.selector;
 
 import java.util.Comparator;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 /** wrapper class for a factor comparator .
  *@param T: the type of the objects to be compared.
  */
 public final class FactorComparator<T>{
-  private static Logger logger = Logger.getLogger(CandidateComparator.class);
+  private static Logger logger = LogManager.getLogger(CandidateComparator.class);
 
   private String factorName;
   private int weight;

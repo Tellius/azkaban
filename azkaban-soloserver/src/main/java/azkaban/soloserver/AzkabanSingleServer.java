@@ -16,7 +16,7 @@
 
 package azkaban.soloserver;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.database.AzkabanDatabaseSetup;
 import azkaban.database.AzkabanDatabaseUpdater;
@@ -26,7 +26,7 @@ import azkaban.webapp.AzkabanWebServer;
 import azkaban.utils.Props;
 
 public class AzkabanSingleServer {
-  private static final Logger logger = Logger.getLogger(AzkabanWebServer.class);
+  private static final Logger logger = LogManager.getLogger(AzkabanWebServer.class);
 
   public static void main(String[] args) throws Exception {
     logger.info("Starting Azkaban Server");

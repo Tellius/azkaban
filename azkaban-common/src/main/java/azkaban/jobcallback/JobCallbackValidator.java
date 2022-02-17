@@ -12,7 +12,7 @@ import static azkaban.jobcallback.JobCallbackConstants.STATUS_TOKEN;
 
 import java.util.Collection;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.utils.Props;
 
@@ -25,8 +25,7 @@ import azkaban.utils.Props;
  */
 public class JobCallbackValidator {
 
-  private static final Logger logger = Logger
-      .getLogger(JobCallbackValidator.class);
+  private static final Logger logger = LogManager.getLogger(JobCallbackValidator.class);
 
   /**
    * Make sure all the job callback related properties are valid

@@ -25,7 +25,7 @@ import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 import joptsimple.OptionSpec;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 import org.apache.velocity.app.VelocityEngine;
 
 import azkaban.user.UserManager;
@@ -33,7 +33,7 @@ import azkaban.utils.Props;
 import azkaban.server.session.SessionCache;
 
 public abstract class AzkabanServer {
-  private static final Logger logger = Logger.getLogger(AzkabanServer.class);
+  private static final Logger logger = LogManager.getLogger(AzkabanServer.class);
   public static final String AZKABAN_PROPERTIES_FILE = "azkaban.properties";
   public static final String AZKABAN_PRIVATE_PROPERTIES_FILE =
       "azkaban.private.properties";

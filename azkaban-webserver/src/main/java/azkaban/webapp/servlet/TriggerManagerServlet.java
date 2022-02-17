@@ -26,7 +26,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.server.session.Session;
 import azkaban.trigger.Trigger;
@@ -37,8 +37,7 @@ import azkaban.webapp.AzkabanWebServer;
 
 public class TriggerManagerServlet extends LoginAbstractAzkabanServlet {
   private static final long serialVersionUID = 1L;
-  private static final Logger logger = Logger
-      .getLogger(TriggerManagerServlet.class);
+  private static final Logger logger = LogManager.getLogger(TriggerManagerServlet.class);
   private TriggerManager triggerManager;
 
   @Override

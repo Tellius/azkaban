@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.trigger.Condition;
 import azkaban.trigger.ConditionChecker;
@@ -35,8 +35,7 @@ import azkaban.trigger.builtin.ExecuteFlowAction;
 
 public class TriggerBasedScheduleLoader implements ScheduleLoader {
 
-  private static Logger logger = Logger
-      .getLogger(TriggerBasedScheduleLoader.class);
+  private static Logger logger = LogManager.getLogger(TriggerBasedScheduleLoader.class);
 
   private TriggerManagerAdapter triggerManager;
 

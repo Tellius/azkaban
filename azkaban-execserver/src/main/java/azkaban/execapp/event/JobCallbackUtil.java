@@ -33,7 +33,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.message.BasicHeader;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.event.Event;
 import azkaban.execapp.JobRunner;
@@ -42,7 +42,7 @@ import azkaban.jobcallback.JobCallbackStatusEnum;
 import azkaban.utils.Props;
 
 public class JobCallbackUtil {
-  private static final Logger logger = Logger.getLogger(JobCallbackUtil.class);
+  private static final Logger logger = LogManager.getLogger(JobCallbackUtil.class);
 
   private static Map<JobCallbackStatusEnum, String> firstJobcallbackPropertyMap =
       new HashMap<JobCallbackStatusEnum, String>(

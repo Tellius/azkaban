@@ -20,14 +20,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.utils.Props;
 import azkaban.utils.Utils;
 
 public class ActionTypeLoader {
 
-  private static Logger logger = Logger.getLogger(ActionTypeLoader.class);
+  private static Logger logger = LogManager.getLogger(ActionTypeLoader.class);
 
   public static final String DEFAULT_TRIGGER_ACTION_PLUGIN_DIR =
       "plugins/triggeractions";

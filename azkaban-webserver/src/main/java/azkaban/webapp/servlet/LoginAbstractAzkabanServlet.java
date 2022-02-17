@@ -34,7 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.project.Project;
 import azkaban.server.session.Session;
@@ -54,8 +54,7 @@ public abstract class LoginAbstractAzkabanServlet extends
 
   private static final long serialVersionUID = 1L;
 
-  private static final Logger logger = Logger
-      .getLogger(LoginAbstractAzkabanServlet.class.getName());
+  private static final Logger logger = LogManager.getLogger(LoginAbstractAzkabanServlet.class.getName());
   private static final String SESSION_ID_NAME = "azkaban.browser.session.id";
   private static final int DEFAULT_UPLOAD_DISK_SPOOL_SIZE = 20 * 1024 * 1024;
 

@@ -19,7 +19,7 @@ package azkaban.execapp.event;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.executor.ExecutableFlow;
 import azkaban.executor.ExecutableNode;

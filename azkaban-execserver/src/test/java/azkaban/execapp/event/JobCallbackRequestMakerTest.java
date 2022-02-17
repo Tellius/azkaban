@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -35,8 +35,7 @@ import azkaban.utils.Props;
 
 public class JobCallbackRequestMakerTest {
 
-  private static final Logger logger = Logger
-      .getLogger(JobCallbackRequestMakerTest.class);
+  private static final Logger logger = LogManager.getLogger(JobCallbackRequestMakerTest.class);
 
   private static final String SLEEP_DURATION_PARAM = "sleepDuration";
   private static final String STATUS_CODE_PARAM = "returnedStatusCode";

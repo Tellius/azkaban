@@ -16,14 +16,14 @@
 
 package azkaban.metric;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 /**
  * Abstract class for Metric
  * @param <T> Type of Value of a given metric
  */
 public abstract class AbstractMetric<T> implements IMetric<T>, Cloneable{
-  protected static final Logger logger = Logger.getLogger(MetricReportManager.class);
+  protected static final Logger logger = LogManager.getLogger(MetricReportManager.class);
   protected String name;
   protected T value;
   protected String type;

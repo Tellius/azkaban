@@ -21,7 +21,7 @@ import java.io.File;
 import java.util.Date;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -44,7 +44,7 @@ public class JavaProcessJobTest {
 
   private JavaProcessJob job = null;
   private Props props = null;
-  private Logger log = Logger.getLogger(JavaProcessJob.class);
+  private Logger log = LogManager.getLogger(JavaProcessJob.class);
 
   private static String classPaths;
 

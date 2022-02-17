@@ -30,13 +30,13 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
-
-import org.apache.log4j.Appender;
-import org.apache.log4j.FileAppender;
-import org.apache.log4j.Layout;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PatternLayout;
-
+import org.apache.logging.log4j.core.Appender;
+//import org.apache.log4j.Appender;
+import org.apache.logging.log4j.core.appender.FileAppender;
+//import org.apache.log4j.Layout;
+import org.apache.logging.log4j.Logger;
+//import org.apache.log4j.PatternLayout;
+import org.apache.logging.log4j.core.layout.PatternLayout;
 import azkaban.event.Event;
 import azkaban.event.Event.Type;
 import azkaban.event.EventHandler;
@@ -63,20 +63,32 @@ import azkaban.project.ProjectManagerException;
 import azkaban.utils.Props;
 import azkaban.utils.PropsUtils;
 import azkaban.utils.SwapQueue;
+import org.apache.logging.log4j.core.Layout;
+import org.apache.logging.log4j.core.LoggerContext;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+
+import org.apache.logging.log4j.core.config.Configuration;
+import org.apache.logging.log4j.core.config.LoggerConfig;
+import org.apache.logging.log4j.core.config.AppenderRef;
 
 /**
  * Class that handles the running of a ExecutableFlow DAG
  *
  */
 public class FlowRunner extends EventHandler implements Runnable {
-  private static final Layout DEFAULT_LAYOUT = new PatternLayout(
-      "%d{dd-MM-yyyy HH:mm:ss z} %c{1} %p - %m\n");
+  private static final Layout DEFAULT_LAYOUT = PatternLayout.newBuilder().withPattern("%d{dd-MM-yyyy HH:mm:ss z} %c{1} %p - %m\n").build();
+//          new PatternLayout(
+//      );
   // We check update every 5 minutes, just in case things get stuck. But for the
   // most part, we'll be idling.
   private static final long CHECK_WAIT_MS = 5 * 60 * 1000;
 
   private Logger logger;
   private Layout loggerLayout = DEFAULT_LAYOUT;
+  private static final LoggerContext ctx = (LoggerContext)LogManager.getContext(false);
+  private static final Configuration config = ctx.getConfiguration();
   private Appender flowAppender;
   private File logFile;
 
@@ -233,7 +245,7 @@ public class FlowRunner extends EventHandler implements Runnable {
       flow.setEndTime(System.currentTimeMillis());
       logger.info("Setting end time for flow " + execId + " to "
           + System.currentTimeMillis());
-      closeLogger();
+//      closeLogger();
 
       updateFlow();
       this.fireEventListeners(Event.create(this, Type.FLOW_FINISHED));
@@ -265,7 +277,9 @@ public class FlowRunner extends EventHandler implements Runnable {
     flow.setInputProps(commonFlowProps);
 
     // Create execution dir
-    createLogger(flowId);
+    String loggerName = execId + "." + flowId;
+    logger = LogManager.getLogger(loggerName);
+//    createLogger(flowId);
 
     if (this.watcher != null) {
       this.watcher.setLogger(logger);
@@ -309,7 +323,7 @@ public class FlowRunner extends EventHandler implements Runnable {
   private void createLogger(String flowId) {
     // Create logger
     String loggerName = execId + "." + flowId;
-    logger = Logger.getLogger(loggerName);
+    logger = LogManager.getLogger(loggerName);
 
     // Create file appender
     String logName = "_flow." + loggerName + ".log";
@@ -318,17 +332,35 @@ public class FlowRunner extends EventHandler implements Runnable {
 
     flowAppender = null;
     try {
-      flowAppender = new FileAppender(loggerLayout, absolutePath, false);
-      logger.addAppender(flowAppender);
-    } catch (IOException e) {
-      logger.error("Could not open log file in " + execDir, e);
+      FileAppender.Builder b = FileAppender.newBuilder().withFileName(absolutePath)
+      .withAppend(true)
+      .setName("my-appender");
+      flowAppender = b.build();
+      flowAppender.start();
+      config.addAppender(flowAppender);
+
+      AppenderRef ref = AppenderRef.createAppenderRef(loggerName, Level.INFO, null);
+      AppenderRef[] refs = new AppenderRef[] {ref};
+      LoggerConfig loggerConfig = LoggerConfig.createLogger(false, Level.ALL, loggerName, "true", refs, null, config, null);
+      loggerConfig.addAppender(flowAppender, null, null);
+      config.addLogger(loggerName, loggerConfig);
+      ctx.updateLoggers();
+
+//      flowAppender = new FileAppender(loggerLayout, absolutePath, false);
+//      logger.addAppender(flowAppender);
+    } catch (Exception e) {
+      logger.error("Exception in flow runer", e);
     }
   }
 
   private void closeLogger() {
     if (logger != null) {
-      logger.removeAppender(flowAppender);
-      flowAppender.close();
+      String flowId = flow.getFlowId();
+      String loggerName = execId + "." + flowId;
+      flowAppender.stop();
+      config.getLoggerConfig(loggerName).removeAppender(loggerName);
+      config.removeLogger(loggerName);
+      ctx.updateLoggers();
 
       try {
         executorLoader.uploadLogFile(execId, "", 0, logFile);

@@ -32,7 +32,7 @@ import java.util.Properties;
 
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Layout;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 import org.apache.log4j.PatternLayout;
 
 import azkaban.jobExecutor.ProcessJob;
@@ -81,7 +81,7 @@ public class JavaJobRunnerMain {
 
       _logger = Logger.getRootLogger();
       _logger.removeAllAppenders();
-      ConsoleAppender appender = new ConsoleAppender(DEFAULT_LAYOUT);
+      ConsoleAppender appender = new ConsoleAppendConsoleAppenderer(DEFAULT_LAYOUT);
       appender.activateOptions();
       _logger.addAppender(appender);
 

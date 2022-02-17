@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.executor.ExecutableFlow;
 import azkaban.executor.ExecutionOptions;
@@ -54,7 +54,7 @@ public class ExecuteFlowAction implements TriggerAction {
   private ExecutionOptions executionOptions = new ExecutionOptions();
   private List<SlaOption> slaOptions;
 
-  private static Logger logger = Logger.getLogger(ExecuteFlowAction.class);
+  private static Logger logger = LogManager.getLogger(ExecuteFlowAction.class);
 
   public ExecuteFlowAction(String actionId, int projectId, String projectName,
       String flowName, String submitUser, ExecutionOptions executionOptions,

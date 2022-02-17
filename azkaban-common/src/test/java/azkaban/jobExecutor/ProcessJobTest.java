@@ -19,7 +19,7 @@ package azkaban.jobExecutor;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -36,7 +36,7 @@ public class ProcessJobTest {
 
   private ProcessJob job = null;
   private Props props = null;
-  private Logger log = Logger.getLogger(ProcessJob.class);
+  private Logger log = LogManager.getLogger(ProcessJob.class);
 
   @Before
   public void setUp() throws IOException {

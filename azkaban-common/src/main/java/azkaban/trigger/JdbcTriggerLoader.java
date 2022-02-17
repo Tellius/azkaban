@@ -27,7 +27,7 @@ import java.util.List;
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import org.joda.time.DateTime;
 
@@ -38,7 +38,7 @@ import azkaban.utils.Props;
 
 public class JdbcTriggerLoader extends AbstractJdbcLoader implements
     TriggerLoader {
-  private static Logger logger = Logger.getLogger(JdbcTriggerLoader.class);
+  private static Logger logger = LogManager.getLogger(JdbcTriggerLoader.class);
 
   private EncodingType defaultEncodingType = EncodingType.GZIP;
 

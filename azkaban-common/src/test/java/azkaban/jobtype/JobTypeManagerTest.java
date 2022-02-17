@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import org.junit.After;
 import org.junit.Before;
@@ -47,7 +47,7 @@ public class JobTypeManagerTest {
 
   public final static String TEST_PLUGIN_DIR = "jobtypes_test";
 
-  private Logger logger = Logger.getLogger(JobTypeManagerTest.class);
+  private Logger logger = LogManager.getLogger(JobTypeManagerTest.class);
   private String testPluginDirPath;
   private JobTypeManager manager;
 

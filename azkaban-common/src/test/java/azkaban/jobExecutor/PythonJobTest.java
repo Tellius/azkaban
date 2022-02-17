@@ -19,7 +19,7 @@ package azkaban.jobExecutor;
 import java.io.IOException;
 import java.util.Date;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -33,7 +33,7 @@ public class PythonJobTest {
   private PythonJob job = null;
   // private JobDescriptor descriptor = null;
   private Props props = null;
-  private Logger log = Logger.getLogger(PythonJob.class);
+  private Logger log = LogManager.getLogger(PythonJob.class);
 
   private static final String scriptContent =
       "#!/usr/bin/python  \n" +

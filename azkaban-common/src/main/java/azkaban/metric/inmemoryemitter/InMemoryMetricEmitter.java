@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.metric.IMetric;
 import azkaban.metric.IMetricEmitter;
@@ -39,7 +39,7 @@ import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
  * This is also the default metric emitter and used by /stats servlet
  */
 public class InMemoryMetricEmitter implements IMetricEmitter {
-  protected static final Logger logger = Logger.getLogger(InMemoryMetricEmitter.class);
+  protected static final Logger logger = LogManager.getLogger(InMemoryMetricEmitter.class);
 
   /**
    * Data structure to keep track of snapshots

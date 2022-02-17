@@ -24,7 +24,9 @@ import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 import azkaban.jobExecutor.JavaProcessJob;
 import azkaban.jobExecutor.Job;
@@ -51,7 +53,7 @@ public class JobTypeManager {
   private static final String COMMONCONFFILE = "common.properties";
   // common private properties for multiple plugins
   private static final String COMMONSYSCONFFILE = "commonprivate.properties";
-  private static final Logger logger = Logger.getLogger(JobTypeManager.class);
+  private static final Logger logger = LogManager.getLogger(JobTypeManager.class);
 
   private JobTypePluginSet pluginSet;
   private Props globalProperties;
@@ -362,9 +364,11 @@ public class JobTypeManager {
           pluginJobProps = new Props();
       }
 
+      Logger apiLogger = (Logger)logger;
+
       job =
           (Job) Utils.callConstructor(executorClass, jobId, pluginLoadProps,
-              jobProps, logger);
+              jobProps, apiLogger);
     } catch (Exception e) {
       logger.error("Failed to build job executor for job " + jobId
           + e.getMessage());

@@ -16,7 +16,7 @@ import java.util.TimeZone;
 
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.message.BasicHeader;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.event.Event;
 import azkaban.event.EventListener;
@@ -45,8 +45,7 @@ import azkaban.utils.PropsUtils;
  */
 public class JobCallbackManager implements EventListener {
 
-  private static final Logger logger = Logger
-      .getLogger(JobCallbackManager.class);
+  private static final Logger logger = LogManager.getLogger(JobCallbackManager.class);
 
   private static boolean isInitialized = false;
   private static JobCallbackManager instance;

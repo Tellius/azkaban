@@ -38,8 +38,8 @@ import javax.management.MBeanServer;
 import javax.management.ObjectName;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
-import org.apache.log4j.jmx.HierarchyDynamicMBean;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
+//import org.apache.log4j.jmx.HierarchyDynamicMBean;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.log.Log4JLogChute;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
@@ -127,7 +127,7 @@ public class AzkabanWebServer extends AzkabanServer {
   private static final String AZKABAN_ACCESS_LOGGER_NAME =
       "azkaban.webapp.servlet.LoginAbstractAzkabanServlet";
 
-  private static final Logger logger = Logger.getLogger(AzkabanWebServer.class);
+  private static final Logger logger = LogManager.getLogger(AzkabanWebServer.class);
 
   public static final String AZKABAN_HOME = "AZKABAN_HOME";
   public static final String DEFAULT_CONF_PATH = "conf";
@@ -647,7 +647,7 @@ public class AzkabanWebServer extends AzkabanServer {
     engine.setProperty("runtime.log.invalid.references", devMode);
     engine.setProperty("runtime.log.logsystem.class", Log4JLogChute.class);
     engine.setProperty("runtime.log.logsystem.log4j.logger",
-        Logger.getLogger("org.apache.velocity.Logger"));
+        LogManager.getLogger("org.apache.velocity.Logger"));
     engine.setProperty("parser.pool.size", 3);
     return engine;
   }
@@ -1249,19 +1249,19 @@ public class AzkabanWebServer extends AzkabanServer {
 
     // Register Log4J loggers as JMX beans so the log level can be
     // updated via JConsole or Java VisualVM
-    HierarchyDynamicMBean log4jMBean = new HierarchyDynamicMBean();
-    registerMbean("log4jmxbean", log4jMBean);
-    ObjectName accessLogLoggerObjName =
-        log4jMBean.addLoggerMBean(AZKABAN_ACCESS_LOGGER_NAME);
-
-    if (accessLogLoggerObjName == null) {
-      System.out
-          .println("************* loginLoggerObjName is null, make sure there is a logger with name "
-              + AZKABAN_ACCESS_LOGGER_NAME);
-    } else {
-      System.out.println("******** loginLoggerObjName: "
-          + accessLogLoggerObjName.getCanonicalName());
-    }
+//    HierarchyDynamicMBean log4jMBean = new HierarchyDynamicMBean();
+//    registerMbean("log4jmxbean", log4jMBean);
+//    ObjectName accessLogLoggerObjName =
+//        log4jMBean.addLoggerMBean(AZKABAN_ACCESS_LOGGER_NAME);
+//
+//    if (accessLogLoggerObjName == null) {
+//      System.out
+//          .println("************* loginLoggerObjName is null, make sure there is a logger with name "
+//              + AZKABAN_ACCESS_LOGGER_NAME);
+//    } else {
+//      System.out.println("******** loginLoggerObjName: "
+//          + accessLogLoggerObjName.getCanonicalName());
+//    }
   }
 
   public void close() {

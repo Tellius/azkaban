@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import org.joda.time.DateTime;
 
@@ -29,7 +29,7 @@ import azkaban.utils.JSONUtils;
 
 public class Trigger {
 
-  private static Logger logger = Logger.getLogger(Trigger.class);
+  private static Logger logger = LogManager.getLogger(Trigger.class);
 
   private int triggerId = -1;
   private long lastModifyTime;

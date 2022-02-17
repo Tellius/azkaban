@@ -32,7 +32,7 @@ import javax.management.MBeanInfo;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 import org.joda.time.DateTimeZone;
 import org.mortbay.jetty.Connector;
 import org.mortbay.jetty.Server;
@@ -66,8 +66,7 @@ import azkaban.utils.Utils;
 public class AzkabanExecutorServer {
   private static final String CUSTOM_JMX_ATTRIBUTE_PROCESSOR_PROPERTY =
       "jmx.attribute.processor.class";
-  private static final Logger logger = Logger
-      .getLogger(AzkabanExecutorServer.class);
+  private static final Logger logger = LogManager.getLogger(AzkabanExecutorServer.class);
   private static final int MAX_FORM_CONTENT_SIZE = 10 * 1024 * 1024;
 
   public static final String AZKABAN_HOME = "AZKABAN_HOME";

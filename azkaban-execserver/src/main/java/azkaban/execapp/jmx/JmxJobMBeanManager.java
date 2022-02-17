@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.event.Event;
 import azkaban.event.EventListener;
@@ -22,8 +22,7 @@ import azkaban.utils.Props;
  */
 public class JmxJobMBeanManager implements JmxJobMXBean, EventListener {
 
-  private static final Logger logger = Logger
-      .getLogger(JmxJobMBeanManager.class);
+  private static final Logger logger = LogManager.getLogger(JmxJobMBeanManager.class);
 
   private static JmxJobMBeanManager INSTANCE = new JmxJobMBeanManager();
 

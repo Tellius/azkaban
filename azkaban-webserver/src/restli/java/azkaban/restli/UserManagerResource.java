@@ -18,7 +18,7 @@ package azkaban.restli;
 
 import java.util.UUID;
 import javax.servlet.ServletException;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.restli.user.User;
 import azkaban.user.UserManager;
@@ -33,8 +33,7 @@ import com.linkedin.restli.server.resources.ResourceContextHolder;
 
 @RestLiActions(name = "user", namespace = "azkaban.restli")
 public class UserManagerResource extends ResourceContextHolder {
-  private static final Logger logger = Logger
-      .getLogger(UserManagerResource.class);
+  private static final Logger logger = LogManager.getLogger(UserManagerResource.class);
 
   public AzkabanWebServer getAzkaban() {
     return AzkabanWebServer.getInstance();

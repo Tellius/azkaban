@@ -21,7 +21,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import org.joda.time.DateTimeZone;
 import org.joda.time.ReadablePeriod;
@@ -42,7 +42,7 @@ import azkaban.utils.Props;
  * flow to and overlap each other.
  */
 public class ScheduleManager implements TriggerAgent {
-  private static Logger logger = Logger.getLogger(ScheduleManager.class);
+  private static Logger logger = LogManager.getLogger(ScheduleManager.class);
 
   public static final String triggerSource = "SimpleTimeTrigger";
   private final DateTimeFormatter _dateFormat = DateTimeFormat

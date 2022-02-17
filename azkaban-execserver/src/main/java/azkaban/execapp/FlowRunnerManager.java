@@ -36,7 +36,8 @@ import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import azkaban.event.Event;
 import azkaban.event.EventListener;
@@ -94,7 +95,7 @@ public class FlowRunnerManager implements EventListener,
       "executor.threadpool.workqueue.size";
   private static final String EXECUTOR_FLOW_THREADS = "executor.flow.threads";
   private static final String FLOW_NUM_JOB_THREADS = "flow.num.job.threads";
-  private static Logger logger = Logger.getLogger(FlowRunnerManager.class);
+  private static Logger logger = LogManager.getLogger(FlowRunnerManager.class);
   private File executionDirectory;
   private File projectDirectory;
 

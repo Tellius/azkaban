@@ -29,7 +29,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.executor.ConnectorParams;
 import azkaban.executor.ExecutorManagerAdapter;
@@ -51,7 +51,7 @@ public class JMXHttpServlet extends LoginAbstractAzkabanServlet implements
    */
   private static final long serialVersionUID = 1L;
 
-  private static final Logger logger = Logger.getLogger(JMXHttpServlet.class
+  private static final Logger logger = LogManager.getLogger(JMXHttpServlet.class
       .getName());
 
   private UserManager userManager;

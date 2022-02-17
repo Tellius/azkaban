@@ -16,7 +16,7 @@
 
 package azkaban.jobExecutor.utils;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.jobExecutor.AbstractJob;
 
@@ -30,7 +30,7 @@ public class InitErrorJob extends AbstractJob {
   private Exception exception;
 
   public InitErrorJob(String id, Exception e) {
-    super(id, Logger.getLogger(AbstractJob.class));
+    super(id, LogManager.getLogger(AbstractJob.class));
     exception = e;
   }
 

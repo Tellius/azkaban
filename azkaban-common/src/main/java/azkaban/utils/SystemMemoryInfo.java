@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 /**
  * @author wkang
@@ -22,7 +22,7 @@ import org.apache.log4j.Logger;
  * All the memory size used in this function is in KB
  */
 public class SystemMemoryInfo {
-  private static final Logger logger = Logger.getLogger(SystemMemoryInfo.class);
+  private static final Logger logger = LogManager.getLogger(SystemMemoryInfo.class);
 
   private static String MEMINFO_FILE = "/proc/meminfo"; 
   private static boolean memCheckEnabled;

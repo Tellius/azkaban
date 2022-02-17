@@ -20,7 +20,7 @@ import java.io.File;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.jobExecutor.JavaProcessJob;
 import azkaban.utils.Props;

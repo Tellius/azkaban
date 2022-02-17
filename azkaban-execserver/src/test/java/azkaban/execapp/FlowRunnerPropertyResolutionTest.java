@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -72,7 +72,7 @@ public class FlowRunnerPropertyResolutionTest {
   private JobTypeManager jobtypeManager;
   private ProjectLoader fakeProjectLoader;
   private ExecutorLoader fakeExecutorLoader;
-  private Logger logger = Logger.getLogger(FlowRunnerTest2.class);
+  private Logger logger = LogManager.getLogger(FlowRunnerTest2.class);
   private Project project;
   private Map<String, Flow> flowMap;
   private static int id = 101;

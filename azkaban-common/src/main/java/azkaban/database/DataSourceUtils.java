@@ -22,7 +22,7 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import java.sql.PreparedStatement;
 import java.sql.Connection;
@@ -31,7 +31,7 @@ import azkaban.utils.Props;
 
 public class DataSourceUtils {
 
-  private static Logger logger = Logger.getLogger(DataSourceUtils.class);
+  private static Logger logger = LogManager.getLogger(DataSourceUtils.class);
 
   /**
    * Property types

@@ -24,12 +24,12 @@ import java.util.Map;
 import org.apache.commons.jexl2.Expression;
 import org.apache.commons.jexl2.JexlEngine;
 import org.apache.commons.jexl2.MapContext;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 import org.joda.time.DateTime;
 
 public class Condition {
 
-  private static Logger logger = Logger.getLogger(Condition.class);
+  private static Logger logger = LogManager.getLogger(Condition.class);
 
   private static JexlEngine jexl = new JexlEngine();
   private static CheckerTypeLoader checkerLoader = null;

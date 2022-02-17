@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -45,7 +45,7 @@ public class ExecutableFlowTest {
   public void setUp() throws Exception {
     project = new Project(11, "myTestProject");
 
-    Logger logger = Logger.getLogger(this.getClass());
+    Logger logger = LogManager.getLogger(this.getClass());
     DirectoryFlowLoader loader = new DirectoryFlowLoader(new Props(), logger);
 
     loader.loadProjectFlow(project, TestExecutions.getFlowDir("embedded"));

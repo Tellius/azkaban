@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.utils.Props;
 
@@ -44,7 +44,7 @@ public class WordCountLocal extends AbstractJob {
   }
 
   public WordCountLocal(String id, Props prop) {
-    super(id, Logger.getLogger(WordCountLocal.class));
+    super(id, LogManager.getLogger(WordCountLocal.class));
     _input = prop.getString("input");
     _output = prop.getString("output");
   }

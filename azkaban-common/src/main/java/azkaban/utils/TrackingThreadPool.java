@@ -23,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 /**
  * A simple subclass of {@link ThreadPoolExecutor} to keep track of in progress
@@ -37,7 +37,7 @@ import org.apache.log4j.Logger;
  */
 public class TrackingThreadPool extends ThreadPoolExecutor {
 
-  private static Logger logger = Logger.getLogger(TrackingThreadPool.class);
+  private static Logger logger = LogManager.getLogger(TrackingThreadPool.class);
 
   private final Map<Runnable, Boolean> inProgress =
       new ConcurrentHashMap<Runnable, Boolean>();

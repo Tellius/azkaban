@@ -19,14 +19,14 @@ package azkaban.executor.selector;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 /** Implementation of the CandidateSelector.
  *  @param K executor object type.
  *  @param V dispatching object type.
  * */
 public class CandidateSelector<K extends Comparable<K>, V> implements Selector<K, V> {
-  private static Logger logger = Logger.getLogger(CandidateComparator.class);
+  private static Logger logger = LogManager.getLogger(CandidateComparator.class);
 
   private CandidateFilter<K,V> filter;
   private CandidateComparator<K> comparator;

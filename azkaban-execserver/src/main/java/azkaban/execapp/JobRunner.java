@@ -25,12 +25,18 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.log4j.Appender;
-import org.apache.log4j.EnhancedPatternLayout;
-import org.apache.log4j.Layout;
-import org.apache.log4j.Logger;
-import org.apache.log4j.RollingFileAppender;
+//import org.apache.log4j.Appender;
+//import org.apache.logging.log4j.core.layout.PatternLayout;
+//import org.apache.logging.log4j.core.appender.rolling.CompositeTriggeringPolicy;
+//import org.apache.logging.log4j.core.appender.rolling.DefaultRolloverStrategy;
+//import org.apache.logging.log4j.core.appender.rolling.SizeBasedTriggeringPolicy;
+//import org.apache.logging.log4j.core.appender.rolling.TimeBasedTriggeringPolicy;
+//import org.apache.logging.log4j.core.appender.rolling.TriggeringPolicy;
+//import org.apache.logging.log4j.core.appender.rolling.DefaultRolloverStrategy;
 
+//import org.apache.log4j.Layout;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Level;
 import azkaban.event.Event;
 import azkaban.event.Event.Type;
 import azkaban.event.EventHandler;
@@ -49,12 +55,28 @@ import azkaban.jobtype.JobTypeManager;
 import azkaban.jobtype.JobTypeManagerException;
 import azkaban.utils.Props;
 import azkaban.utils.StringUtils;
+import org.apache.logging.log4j.core.Layout;
+import org.apache.logging.log4j.core.LoggerContext;
+
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.Appender;
+//import org.apache.log4j.Appender;
+import org.apache.logging.log4j.core.appender.RollingFileAppender;
+//import org.apache.log4j.Layout;
+import org.apache.logging.log4j.Logger;
+//import org.apache.log4j.PatternLayout;
+import org.apache.logging.log4j.core.layout.PatternLayout;
+import org.apache.logging.log4j.core.config.Configuration;
+import org.apache.logging.log4j.core.config.LoggerConfig;
+import org.apache.logging.log4j.core.config.AppenderRef;
 
 public class JobRunner extends EventHandler implements Runnable {
   public static final String AZKABAN_WEBSERVER_URL = "azkaban.webserver.url";
 
-  private final Layout DEFAULT_LAYOUT = new EnhancedPatternLayout(
-      "%d{dd-MM-yyyy HH:mm:ss z} %c{1} %p - %m\n");
+  private static final LoggerContext ctx = (LoggerContext)LogManager.getContext(false);
+  private static final Configuration config = ctx.getConfiguration();
+
+  private final Layout DEFAULT_LAYOUT = PatternLayout.newBuilder().withPattern("%d{dd-MM-yyyy HH:mm:ss z} %c{1} %p - %m\n").build();
 
   private ExecutorLoader loader;
   private Props props;
@@ -63,7 +85,7 @@ public class JobRunner extends EventHandler implements Runnable {
 
   private Logger logger = null;
   private Layout loggerLayout = DEFAULT_LAYOUT;
-  private Logger flowLogger = null;
+  private Logger flowLogger = LogManager.getLogger(JobRunner.class);
 
   private Appender jobAppender;
   private File logFile;
@@ -207,7 +229,7 @@ public class JobRunner extends EventHandler implements Runnable {
       String loggerName =
           System.currentTimeMillis() + "." + this.executionId + "."
               + this.jobId;
-      logger = Logger.getLogger(loggerName);
+      logger = LogManager.getLogger(loggerName);
 
       // Create file appender
       String logName = createLogFileName(node);
@@ -217,15 +239,34 @@ public class JobRunner extends EventHandler implements Runnable {
 
       jobAppender = null;
       try {
-        RollingFileAppender fileAppender =
-            new RollingFileAppender(loggerLayout, absolutePath, true);
-        fileAppender.setMaxBackupIndex(jobLogBackupIndex);
-        fileAppender.setMaxFileSize(jobLogChunkSize);
-        jobAppender = fileAppender;
-        logger.addAppender(jobAppender);
-        logger.setAdditivity(false);
-      } catch (IOException e) {
-        flowLogger.error("Could not open log file in " + workingDir
+//        RollingFileAppender fileAppender =
+//            new RollingFileAppender(loggerLayout, absolutePath, true);
+//        fileAppender.setMaxBackupIndex(jobLogBackupIndex);
+//        fileAppender.setMaxFileSize(jobLogChunkSize);
+        TimeBasedTriggeringPolicy tbtp = TimeBasedTriggeringPolicy.createPolicy(null, null);
+        TriggeringPolicy tp = SizeBasedTriggeringPolicy.createPolicy("10M");
+        CompositeTriggeringPolicy policyComposite = CompositeTriggeringPolicy.createPolicy(tbtp, tp);
+
+        RollingFileAppender.Builder builder = RollingFileAppender.newBuilder().setName("rollingappender")
+                .withFilePattern(absolutePath)
+                .withStrategy(DefaultRolloverStrategy.newBuilder().build()).withPolicy(tp)
+                .setConfiguration(config);//.withConfiguration(config);
+        jobAppender = builder.build();
+        jobAppender.start();
+        config.addAppender(jobAppender);
+
+        AppenderRef ref = AppenderRef.createAppenderRef(loggerName, Level.INFO, null);
+        AppenderRef[] refs = new AppenderRef[] {ref};
+        LoggerConfig loggerConfig = LoggerConfig.createLogger(false, Level.ALL, loggerName, "true", refs, null, config, null);
+        loggerConfig.addAppender(jobAppender, null, null);
+        config.addLogger(loggerName, loggerConfig);
+        ctx.updateLoggers();
+
+//        jobAppender = appender;
+//        logger.addAppender(jobAppender);
+//        logger.setAdditivity(false);
+      } catch (Exception e) {
+        logger.error("Could not open log file in " + workingDir
             + " for job " + this.jobId, e);
       }
     }
@@ -239,8 +280,13 @@ public class JobRunner extends EventHandler implements Runnable {
 
   private void closeLogger() {
     if (jobAppender != null) {
-      logger.removeAppender(jobAppender);
-      jobAppender.close();
+
+      String loggerName = logger.getName();
+
+      config.getAppender(loggerName).stop();
+      config.getLoggerConfig(loggerName).removeAppender(loggerName);
+      config.removeLogger(loggerName);
+      ctx.updateLoggers();
     }
   }
 
@@ -360,7 +406,7 @@ public class JobRunner extends EventHandler implements Runnable {
   }
 
   private void finalizeLogFile(int attemptNo) {
-    closeLogger();
+//    closeLogger();
     if (logFile == null) {
       flowLogger.info("Log file for job " + this.jobId + " is null");
       return;
@@ -417,7 +463,12 @@ public class JobRunner extends EventHandler implements Runnable {
     }
 
     createAttachmentFile();
-    createLogger();
+    String loggerName =
+            System.currentTimeMillis() + "." + this.executionId + "."
+                    + this.jobId;
+    logger = LogManager.getLogger(loggerName);
+
+//    createLogger();
     boolean errorFound = false;
     // Delay execution if necessary. Will return a true if something went wrong.
     errorFound |= delayExecution();
@@ -462,7 +513,7 @@ public class JobRunner extends EventHandler implements Runnable {
         + node.getEndTime() + " with status " + node.getStatus());
 
     fireEvent(Event.create(this, Type.JOB_FINISHED), false);
-    finalizeLogFile(attemptNo);
+//    finalizeLogFile(attemptNo);
     finalizeAttachmentFile();
     writeStatus();
   }

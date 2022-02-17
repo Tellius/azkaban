@@ -26,7 +26,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -47,7 +47,7 @@ import azkaban.utils.Props;
  * </azkaban-users>
  */
 public class XmlUserManager implements UserManager {
-  private static final Logger logger = Logger.getLogger(XmlUserManager.class
+  private static final Logger logger = LogManager.getLogger(XmlUserManager.class
       .getName());
 
   public static final String XML_FILE_PARAM = "user.manager.xml.file";

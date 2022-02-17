@@ -29,7 +29,7 @@ import java.util.regex.PatternSyntaxException;
 import java.util.zip.ZipFile;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.flow.Flow;
 import azkaban.project.DirectoryFlowLoader;
@@ -47,7 +47,7 @@ import azkaban.utils.Props;
 import azkaban.utils.Utils;
 
 public class ProjectManager {
-  private static final Logger logger = Logger.getLogger(ProjectManager.class);
+  private static final Logger logger = LogManager.getLogger(ProjectManager.class);
 
   private ConcurrentHashMap<Integer, Project> projectsById =
       new ConcurrentHashMap<Integer, Project>();

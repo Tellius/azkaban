@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 
 /**
@@ -39,7 +39,7 @@ public class MetricReportManager {
    * Maximum number of metrics reporting threads
    */
   private static final int MAX_EMITTER_THREADS = 4;
-  private static final Logger logger = Logger.getLogger(MetricReportManager.class);
+  private static final Logger logger = LogManager.getLogger(MetricReportManager.class);
 
   /**
    * List of all the metrics that Azkaban is tracking

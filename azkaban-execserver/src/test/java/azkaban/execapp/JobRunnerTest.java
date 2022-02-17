@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.HashSet;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -45,7 +45,7 @@ import azkaban.utils.Props;
 public class JobRunnerTest {
   private File workingDir;
   private JobTypeManager jobtypeManager;
-  private Logger logger = Logger.getLogger("JobRunnerTest");
+  private Logger logger = LogManager.getLogger("JobRunnerTest");
 
   public JobRunnerTest() {
 

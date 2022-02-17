@@ -20,7 +20,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 
 /** Abstract class for a candidate filter.
@@ -28,7 +28,7 @@ import org.apache.log4j.Logger;
  *  register filters using the provided register function.
  */
 public abstract class CandidateFilter<T,V>  {
-  protected static Logger logger = Logger.getLogger(CandidateFilter.class);
+  protected static Logger logger = LogManager.getLogger(CandidateFilter.class);
 
   // internal repository of the registered filters .
   private Map<String,FactorFilter<T,V>> factorFilterList =

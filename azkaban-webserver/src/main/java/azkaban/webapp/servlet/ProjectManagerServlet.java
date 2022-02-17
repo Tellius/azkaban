@@ -43,7 +43,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.executor.ExecutableFlow;
 import azkaban.executor.ExecutableJobInfo;
@@ -81,8 +81,7 @@ import azkaban.webapp.AzkabanWebServer;
 public class ProjectManagerServlet extends LoginAbstractAzkabanServlet {
   private static final String APPLICATION_ZIP_MIME_TYPE = "application/zip";
   private static final long serialVersionUID = 1;
-  private static final Logger logger = Logger
-      .getLogger(ProjectManagerServlet.class);
+  private static final Logger logger = LogManager.getLogger(ProjectManagerServlet.class);
   private static final NodeLevelComparator NODE_LEVEL_COMPARATOR =
       new NodeLevelComparator();
   private static final String LOCKDOWN_CREATE_PROJECTS_KEY =

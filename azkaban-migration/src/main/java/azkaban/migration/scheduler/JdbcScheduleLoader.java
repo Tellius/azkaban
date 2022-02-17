@@ -30,7 +30,7 @@ import javax.sql.DataSource;
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import org.joda.time.DateTimeZone;
 import org.joda.time.ReadablePeriod;
@@ -43,7 +43,7 @@ import azkaban.utils.Props;
 @Deprecated
 public class JdbcScheduleLoader implements ScheduleLoader {
 
-  private static Logger logger = Logger.getLogger(JdbcScheduleLoader.class);
+  private static Logger logger = LogManager.getLogger(JdbcScheduleLoader.class);
 
   public static enum EncodingType {
     PLAIN(1), GZIP(2);

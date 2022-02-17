@@ -19,14 +19,14 @@ package azkaban.trigger;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.utils.Props;
 import azkaban.utils.Utils;
 
 public class CheckerTypeLoader {
 
-  private static Logger logger = Logger.getLogger(CheckerTypeLoader.class);
+  private static Logger logger = LogManager.getLogger(CheckerTypeLoader.class);
 
   public static final String DEFAULT_CONDITION_CHECKER_PLUGIN_DIR =
       "plugins/conditioncheckers";

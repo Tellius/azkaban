@@ -27,7 +27,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.PriorityBlockingQueue;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.event.Event;
 import azkaban.event.EventHandler;
@@ -39,7 +39,7 @@ import azkaban.utils.Props;
 
 public class TriggerManager extends EventHandler implements
     TriggerManagerAdapter {
-  private static Logger logger = Logger.getLogger(TriggerManager.class);
+  private static Logger logger = LogManager.getLogger(TriggerManager.class);
   public static final long DEFAULT_SCANNER_INTERVAL_MS = 60000;
 
   private static Map<Integer, Trigger> triggerIdMap =

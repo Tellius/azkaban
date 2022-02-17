@@ -21,7 +21,7 @@ import java.util.List;
 
 import javax.mail.MessagingException;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.alert.Alerter;
 import azkaban.executor.ExecutableFlow;
@@ -33,7 +33,7 @@ import azkaban.executor.mail.MailCreator;
 import azkaban.sla.SlaOption;
 
 public class Emailer extends AbstractMailer implements Alerter {
-  private static Logger logger = Logger.getLogger(Emailer.class);
+  private static Logger logger = LogManager.getLogger(Emailer.class);
 
   private static final String HTTPS = "https";
 

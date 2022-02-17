@@ -16,7 +16,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -41,7 +41,7 @@ import azkaban.utils.Props;
  * </azkaban-validators>
  */
 public class XmlValidatorManager implements ValidatorManager {
-  private static final Logger logger = Logger.getLogger(XmlValidatorManager.class);
+  private static final Logger logger = LogManager.getLogger(XmlValidatorManager.class);
 
   public static final String AZKABAN_VALIDATOR_TAG = "azkaban-validators";
   public static final String VALIDATOR_TAG = "validator";

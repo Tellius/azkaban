@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -48,7 +48,7 @@ import static azkaban.migration.schedule2trigger.CommonParams.*;
 @SuppressWarnings("deprecation")
 public class Schedule2Trigger {
 
-  private static final Logger logger = Logger.getLogger(Schedule2Trigger.class);
+  private static final Logger logger = LogManager.getLogger(Schedule2Trigger.class);
   private static Props props;
   private static File outputDir;
 

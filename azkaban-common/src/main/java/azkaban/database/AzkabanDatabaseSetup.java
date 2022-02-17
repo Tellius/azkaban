@@ -35,15 +35,15 @@ import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import azkaban.database.DataSourceUtils.PropertyType;
 import azkaban.utils.FileIOUtils;
 import azkaban.utils.Props;
 
 public class AzkabanDatabaseSetup {
-  private static final Logger logger = Logger
-      .getLogger(AzkabanDatabaseSetup.class);
+  private static final Logger logger = LogManager.getLogger(AzkabanDatabaseSetup.class);
   public static final String DATABASE_CHECK_VERSION = "database.check.version";
   public static final String DATABASE_AUTO_UPDATE_TABLES =
       "database.auto.update.tables";

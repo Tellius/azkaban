@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.executor.ConnectorParams;
 import azkaban.server.HttpRequestUtils;
@@ -39,7 +39,7 @@ import azkaban.utils.JSONUtils;
 
 public class JMXHttpServlet extends HttpServlet implements ConnectorParams {
   private static final long serialVersionUID = -3085603824826446270L;
-  private static final Logger logger = Logger.getLogger(JMXHttpServlet.class);
+  private static final Logger logger = LogManager.getLogger(JMXHttpServlet.class);
   private AzkabanExecutorServer server;
 
   public void init(ServletConfig config) throws ServletException {

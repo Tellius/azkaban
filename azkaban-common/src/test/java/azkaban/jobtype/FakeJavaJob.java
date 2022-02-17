@@ -16,7 +16,7 @@
 
 package azkaban.jobtype;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.jobExecutor.JavaProcessJob;
 import azkaban.utils.Props;

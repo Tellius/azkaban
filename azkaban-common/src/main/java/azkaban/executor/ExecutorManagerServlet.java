@@ -25,7 +25,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.utils.FileIOUtils.LogData;
 import azkaban.utils.JSONUtils;
@@ -36,8 +36,7 @@ public class ExecutorManagerServlet extends AbstractServiceServlet {
 
   public static final String URL = "executorManager";
   private static final long serialVersionUID = 1L;
-  private static final Logger logger = Logger
-      .getLogger(ExecutorManagerServlet.class);
+  private static final Logger logger = LogManager.getLogger(ExecutorManagerServlet.class);
 
   public ExecutorManagerServlet(ExecutorManagerAdapter executorManager) {
     this.executorManager = executorManager;

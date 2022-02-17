@@ -16,14 +16,14 @@
 
 package azkaban.executor.selector;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 /** wrapper class for a factor Filter .
  *@param T: the type of the objects to be compared.
  *@param V: the type of the object to be used for filtering.
  */
 public final class FactorFilter<T,V>{
-  private static Logger logger = Logger.getLogger(FactorFilter.class);
+  private static Logger logger = LogManager.getLogger(FactorFilter.class);
 
   private String factorName;
   private Filter<T,V> filter;

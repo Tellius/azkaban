@@ -18,7 +18,7 @@ package azkaban.executor;
 
 import java.util.Comparator;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.utils.Pair;
 
@@ -27,8 +27,7 @@ import azkaban.utils.Pair;
  */
 public final class ExecutableFlowPriorityComparator implements
   Comparator<Pair<ExecutionReference, ExecutableFlow>> {
-  private static Logger logger = Logger
-    .getLogger(ExecutableFlowPriorityComparator.class);
+  private static Logger logger = LogManager.getLogger(ExecutableFlowPriorityComparator.class);
 
   /**
    * <pre>

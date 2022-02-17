@@ -23,7 +23,7 @@ import java.net.URISyntaxException;
 import azkaban.test.executions.TestExecutions;
 import azkaban.utils.Props;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,7 +38,7 @@ public class DirectoryFlowLoaderTest {
 
   @Test
   public void testDirectoryLoad() throws URISyntaxException {
-    Logger logger = Logger.getLogger(this.getClass());
+    Logger logger = LogManager.getLogger(this.getClass());
     DirectoryFlowLoader loader = new DirectoryFlowLoader(new Props(), logger);
 
     loader.loadProjectFlow(project, TestExecutions.getFlowDir("exectest1"));
@@ -47,7 +47,7 @@ public class DirectoryFlowLoaderTest {
 
   @Test
   public void testLoadEmbeddedFlow() throws URISyntaxException {
-    Logger logger = Logger.getLogger(this.getClass());
+    Logger logger = LogManager.getLogger(this.getClass());
     DirectoryFlowLoader loader = new DirectoryFlowLoader(new Props(), logger);
 
     loader.loadProjectFlow(project, TestExecutions.getFlowDir("embedded"));
@@ -56,7 +56,7 @@ public class DirectoryFlowLoaderTest {
 
   @Test
   public void testRecursiveLoadEmbeddedFlow() throws URISyntaxException {
-    Logger logger = Logger.getLogger(this.getClass());
+    Logger logger = LogManager.getLogger(this.getClass());
     DirectoryFlowLoader loader = new DirectoryFlowLoader(new Props(), logger);
 
     loader.loadProjectFlow(project, TestExecutions.getFlowDir("embedded_bad"));

@@ -19,7 +19,7 @@ package azkaban.trigger.builtin;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.alert.Alerter;
 import azkaban.executor.ExecutableFlow;
@@ -31,7 +31,7 @@ public class SlaAlertAction implements TriggerAction {
 
   public static final String type = "AlertAction";
 
-  private static final Logger logger = Logger.getLogger(SlaAlertAction.class);
+  private static final Logger logger = LogManager.getLogger(SlaAlertAction.class);
 
   private String actionId;
   private SlaOption slaOption;

@@ -39,7 +39,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 import org.joda.time.DateTime;
 
 import azkaban.alert.Alerter;
@@ -83,7 +83,7 @@ public class ExecutorManager extends EventHandler implements
   private static final String AZKABAN_MAX_DISPATCHING_ERRORS_PERMITTED =
     "azkaban.maxDispatchingErrors";
 
-  private static Logger logger = Logger.getLogger(ExecutorManager.class);
+  private static Logger logger = LogManager.getLogger(ExecutorManager.class);
   private ExecutorLoader executorLoader;
 
   private CleanerThread cleanerThread;

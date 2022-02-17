@@ -23,7 +23,7 @@ import java.net.URL;
 import javax.servlet.ServletException;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.project.Project;
 import azkaban.project.ProjectManager;
@@ -42,8 +42,7 @@ import com.linkedin.restli.server.resources.ResourceContextHolder;
 
 @RestLiActions(name = "project", namespace = "azkaban.restli")
 public class ProjectManagerResource extends ResourceContextHolder {
-  private static final Logger logger = Logger
-      .getLogger(ProjectManagerResource.class);
+  private static final Logger logger = LogManager.getLogger(ProjectManagerResource.class);
 
   public AzkabanWebServer getAzkaban() {
     return AzkabanWebServer.getInstance();

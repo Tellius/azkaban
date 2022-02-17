@@ -37,7 +37,7 @@ import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.database.AbstractJdbcLoader;
 import azkaban.flow.Flow;
@@ -54,8 +54,7 @@ import azkaban.utils.Triple;
 
 public class JdbcProjectLoader extends AbstractJdbcLoader implements
     ProjectLoader {
-  private static final Logger logger = Logger
-      .getLogger(JdbcProjectLoader.class);
+  private static final Logger logger = LogManager.getLogger(JdbcProjectLoader.class);
 
   private static final int CHUCK_SIZE = 1024 * 1024 * 10;
   private File tempDir;

@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import com.google.common.base.Joiner;
 
@@ -34,7 +34,7 @@ public class AzkabanProcessBuilder {
   private List<String> cmd = new ArrayList<String>();
   private Map<String, String> env = new HashMap<String, String>();
   private String workingDir = System.getProperty("user.dir");
-  private Logger logger = Logger.getLogger(AzkabanProcess.class);
+  private Logger logger = LogManager.getLogger(AzkabanProcess.class);
   private boolean isExecuteAsUser = false;
   private String executeAsUserBinaryPath = null;
   private String effectiveUser = null;

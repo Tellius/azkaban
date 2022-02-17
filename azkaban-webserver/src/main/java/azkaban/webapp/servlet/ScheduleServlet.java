@@ -36,7 +36,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDateTime;
@@ -71,7 +71,7 @@ import azkaban.webapp.SchedulerStatistics;
 
 public class ScheduleServlet extends LoginAbstractAzkabanServlet {
   private static final long serialVersionUID = 1L;
-  private static final Logger logger = Logger.getLogger(ScheduleServlet.class);
+  private static final Logger logger = LogManager.getLogger(ScheduleServlet.class);
   private ProjectManager projectManager;
   private ScheduleManager scheduleManager;
   private UserManager userManager;

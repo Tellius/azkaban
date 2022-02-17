@@ -24,7 +24,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.project.Project;
 import azkaban.project.ProjectManager;
@@ -39,7 +39,7 @@ import azkaban.webapp.AzkabanWebServer;
  * The main page
  */
 public class ProjectServlet extends LoginAbstractAzkabanServlet {
-  private static final Logger logger = Logger.getLogger(ProjectServlet.class
+  private static final Logger logger = LogManager.getLogger(ProjectServlet.class
       .getName());
   private static final String LOCKDOWN_CREATE_PROJECTS_KEY =
       "lockdown.create.projects";

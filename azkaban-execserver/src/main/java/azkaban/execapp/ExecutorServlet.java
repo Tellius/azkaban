@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -43,7 +43,7 @@ import azkaban.utils.JSONUtils;
 
 public class ExecutorServlet extends HttpServlet implements ConnectorParams {
   private static final long serialVersionUID = 1L;
-  private static final Logger logger = Logger.getLogger(ExecutorServlet.class
+  private static final Logger logger = LogManager.getLogger(ExecutorServlet.class
       .getName());
   public static final String JSON_MIME_TYPE = "application/json";
 

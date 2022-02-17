@@ -19,7 +19,7 @@ package azkaban.trigger.builtin;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 import org.joda.time.DateTime;
 import org.joda.time.ReadablePeriod;
 
@@ -34,7 +34,7 @@ import azkaban.utils.Utils;
 
 public class SlaChecker implements ConditionChecker {
 
-  private static final Logger logger = Logger.getLogger(SlaChecker.class);
+  private static final Logger logger = LogManager.getLogger(SlaChecker.class);
   public static final String type = "SlaChecker";
 
   private String id;

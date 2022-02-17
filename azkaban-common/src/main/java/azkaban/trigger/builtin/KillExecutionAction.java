@@ -19,7 +19,7 @@ package azkaban.trigger.builtin;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.executor.ExecutableFlow;
 import azkaban.executor.ExecutorManagerAdapter;
@@ -30,8 +30,7 @@ public class KillExecutionAction implements TriggerAction {
 
   public static final String type = "KillExecutionAction";
 
-  private static final Logger logger = Logger
-      .getLogger(KillExecutionAction.class);
+  private static final Logger logger = LogManager.getLogger(KillExecutionAction.class);
 
   private String actionId;
   private int execId;

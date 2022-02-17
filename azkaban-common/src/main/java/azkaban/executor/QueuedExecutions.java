@@ -6,7 +6,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.PriorityBlockingQueue;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 
 import azkaban.utils.Pair;
 
@@ -17,7 +17,7 @@ import azkaban.utils.Pair;
  * </pre>
  */
 public class QueuedExecutions {
-  private static Logger logger = Logger.getLogger(QueuedExecutions.class);
+  private static Logger logger = LogManager.getLogger(QueuedExecutions.class);
   final long capacity;
 
   /* map to easily access queued flows */

@@ -38,7 +38,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
 import org.joda.time.DateTime;
 
 import azkaban.database.AbstractJdbcLoader;
@@ -53,8 +53,7 @@ import azkaban.utils.PropsUtils;
 
 public class JdbcExecutorLoader extends AbstractJdbcLoader implements
     ExecutorLoader {
-  private static final Logger logger = Logger
-      .getLogger(JdbcExecutorLoader.class);
+  private static final Logger logger = LogManager.getLogger(JdbcExecutorLoader.class);
 
   private EncodingType defaultEncodingType = EncodingType.GZIP;
 
