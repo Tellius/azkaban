@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.BasicConfigurator;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -247,7 +247,6 @@ public class SelectorTest {
   protected ArrayList<MockExecutorObject> executorList = new ArrayList<MockExecutorObject>();
 
   @BeforeClass public static void onlyOnce() {
-    BasicConfigurator.configure();
    }
 
   @Before

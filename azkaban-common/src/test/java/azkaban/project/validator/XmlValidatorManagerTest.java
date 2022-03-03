@@ -49,6 +49,7 @@ public class XmlValidatorManagerTest {
    * Test that if the xml config file specifies a validator classname that does not exist,
    * XmlValidatorManager should throw an exception.
    */
+  //failing because of azkaban/azkaban-common/out/test/resources/test-conf/azkaban-validators-test1.xml does not exist.
   @Test(expected=ValidatorManagerException.class)
   public void testValidatorDoesNotExist() {
     Props props = new Props(baseProps);
@@ -66,6 +67,7 @@ public class XmlValidatorManagerTest {
    * validator and the one specified in the xml file. The TestValidator class specified in the xml
    * configuration file is located with the jar file inside test resource directory project/testValidators.
    */
+  //failing because azkaban/azkaban-common/out/test/resources/test-conf/azkaban-validators-test2.xml does not exist.
   @Test
   public void testLoadValidators() {
     Props props = new Props(baseProps);

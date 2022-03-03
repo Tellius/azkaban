@@ -30,10 +30,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import org.apache.log4j.ConsoleAppender;
-import org.apache.log4j.Layout;
-import org.apache.logging.log4j.Logger; import org.apache.logging.log4j.LogManager;
-import org.apache.log4j.PatternLayout;
+import org.apache.logging.log4j.Logger;
 
 import azkaban.jobExecutor.ProcessJob;
 import azkaban.utils.Props;
@@ -53,10 +50,6 @@ public class JavaJobRunnerMain {
   public static final String RUN_METHOD_PARAM = "method.run";
   public static final String[] PROPS_CLASSES = new String[] {
       "azkaban.utils.Props", "azkaban.common.utils.Props" };
-
-  private static final Layout DEFAULT_LAYOUT = new PatternLayout("%p %m\n");
-
-  public final Logger _logger;
 
   public String _cancelMethod;
   public String _jobName;
@@ -79,28 +72,19 @@ public class JavaJobRunnerMain {
       _jobName = System.getenv(ProcessJob.JOB_NAME_ENV);
       String propsFile = System.getenv(ProcessJob.JOB_PROP_ENV);
 
-      _logger = Logger.getRootLogger();
-      _logger.removeAllAppenders();
-      ConsoleAppender appender = new ConsoleAppendConsoleAppenderer(DEFAULT_LAYOUT);
-      appender.activateOptions();
-      _logger.addAppender(appender);
-
       Properties prop = new Properties();
       prop.load(new BufferedReader(new FileReader(propsFile)));
 
-      _logger.info("Running job " + _jobName);
       String className = prop.getProperty(JOB_CLASS);
       if (className == null) {
         throw new Exception("Class name is not set.");
       }
-      _logger.info("Class name " + className);
 
       // Create the object using proxy
 
-      _javaObject = getObject(_jobName, className, prop, _logger);
+      _javaObject = getObject(_jobName, className, prop, null);
 
       if (_javaObject == null) {
-        _logger.info("Could not create java object to run job: " + className);
         throw new Exception("Could not create running object");
       }
 
@@ -109,9 +93,7 @@ public class JavaJobRunnerMain {
 
       final String runMethod =
           prop.getProperty(RUN_METHOD_PARAM, DEFAULT_RUN_METHOD);
-      _logger.info("Invoking method " + runMethod);
 
-      _logger.info("Proxy check failed, not proxying run.");
       runMethod(_javaObject, runMethod);
 
       _isFinished = true;
@@ -139,11 +121,6 @@ public class JavaJobRunnerMain {
         }
 
       } catch (NoSuchMethodException e) {
-        _logger
-            .info(String
-                .format(
-                    "Apparently there isn't a method[%s] on object[%s], using empty Props object instead.",
-                    GET_GENERATED_PROPERTIES_METHOD, _javaObject));
         outputGeneratedProperties(new Props());
       }
     } catch (Exception e) {
@@ -161,20 +138,13 @@ public class JavaJobRunnerMain {
   private void outputGeneratedProperties(Props outputProperties) {
 
     if (outputProperties == null) {
-      _logger.info("  no gend props");
       return;
-    }
-    for (String key : outputProperties.getKeySet()) {
-      _logger
-          .info("  gend prop " + key + " value:" + outputProperties.get(key));
     }
 
     String outputFileStr = System.getenv(ProcessJob.JOB_OUTPUT_PROP_FILE);
     if (outputFileStr == null) {
       return;
     }
-
-    _logger.info("Outputting generated properties to " + outputFileStr);
 
     Map<String, String> properties = new LinkedHashMap<String, String>();
     for (String key : outputProperties.getKeySet()) {
@@ -212,7 +182,6 @@ public class JavaJobRunnerMain {
     if (_isFinished) {
       return;
     }
-    _logger.info("Attempting to call cancel on this job");
     if (_javaObject != null) {
       Method method = null;
 
@@ -226,9 +195,7 @@ public class JavaJobRunnerMain {
         try {
           method.invoke(_javaObject);
         } catch (Exception e) {
-          if (_logger != null) {
-            _logger.error("Cancel method failed! ", e);
-          }
+
         }
       else {
         throw new RuntimeException("Job " + _jobName

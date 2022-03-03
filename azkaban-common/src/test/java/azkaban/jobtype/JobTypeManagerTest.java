@@ -40,6 +40,9 @@ import azkaban.utils.Props;
  * Test the flow run, especially with embedded flows. Files are in
  * unit/plugins/jobtypes
  *
+ * All Tests are failing because of conflict between Logger interface and Logger class
+ * Logger Class => org.apache.logging.log4j.core.Logger
+ * Logger Interface => org.apache.logging.log4j.Logger
  */
 public class JobTypeManagerTest {
   @Rule

@@ -54,7 +54,7 @@ public class JavaJob extends JavaProcessJob {
     classPath.add(getSourcePathFromClass(JavaJobRunnerMain.class));
     classPath.add(getSourcePathFromClass(Props.class));
 
-    String loggerPath = getSourcePathFromClass(org.apache.log4j.Logger.class);
+    String loggerPath = getSourcePathFromClass(org.apache.logging.log4j.core.Logger.class);
     if (!classPath.contains(loggerPath)) {
       classPath.add(loggerPath);
     }
